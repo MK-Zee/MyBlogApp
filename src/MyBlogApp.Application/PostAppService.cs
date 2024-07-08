@@ -1,5 +1,6 @@
 ﻿using MyBlogApp.Posts;
 using System;
+using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
@@ -14,10 +15,20 @@ namespace MyBlogApp
         CreateUpdatePostDto>, //Used to create/update a book
         IPostAppService //implement the IBookAppService
     {
-        public PostAppService(IRepository<Post, Guid> repository)
-        : base(repository)
-        {
+        private readonly IRepository<Post, Guid> _postRepository;
 
+        public PostAppService(IRepository<Post, Guid> postRepository) : base(postRepository)
+        {
+            _postRepository = postRepository;
+        }
+
+        public async Task<PostDto> GetPostWithCommentsAsync(Guid postId)
+        {
+            var post = await _postRepository
+            .Include(p => p.Comments) // Ensure to include Comments
+            .FirstOrDefaultAsync(p => p.Id == postId);
+
+            return ObjectMapper.Map<Post, PostDto>(post);
         }
     }
 }

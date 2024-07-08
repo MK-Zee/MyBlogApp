@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 
@@ -11,5 +12,6 @@ namespace MyBlogApp.Posts
         PagedAndSortedResultRequestDto, //Used for paging/sorting
         CreateUpdatePostDto> //Used to create/update a post
     {
+        Task<PostDto> GetPostWithCommentsAsync(Guid postId);
     }
 }

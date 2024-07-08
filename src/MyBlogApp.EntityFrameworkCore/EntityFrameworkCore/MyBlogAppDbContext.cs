@@ -105,6 +105,7 @@ public class MyBlogAppDbContext :
                 MyBlogAppConsts.DbSchema);
             c.ConfigureByConvention(); //auto configure for the base class props
             c.Property(x => x.Content).IsRequired();
+            c.HasOne<Post>().WithMany().HasForeignKey(x => x.PostId).IsRequired();
         });
         //builder.Entity<YourEntity>(b =>
         //{

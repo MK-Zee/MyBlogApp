@@ -10,5 +10,8 @@ namespace MyBlogApp.Comments
         public string Content { get; set; }
 
         public DateTime CommentDate { get; set; } = DateTime.Now;
+
+        public Guid PostId { get; set; }
+        // Navigation property to the associated Post entity
     }
 }

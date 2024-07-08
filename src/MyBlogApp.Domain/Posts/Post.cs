@@ -15,5 +15,8 @@ namespace MyBlogApp.Posts
 
         public DateTime PublishDate { get; set; } = DateTime.Now;
 
+
+        // Navigation property for comments associated with this post
+
     }
 }
