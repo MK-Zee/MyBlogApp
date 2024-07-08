@@ -1,0 +1,19 @@
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using Volo.Abp.Domain.Entities.Auditing;
+
+namespace MyBlogApp.Posts
+{
+    public class Post : AuditedAggregateRoot<Guid>
+    {
+        [Required]
+        [StringLength(256)]
+        public string Title { get; set; }
+
+        [Required]
+        public string Content { get; set; }
+
+        public DateTime PublishDate { get; set; } = DateTime.Now;
+
+    }
+}
