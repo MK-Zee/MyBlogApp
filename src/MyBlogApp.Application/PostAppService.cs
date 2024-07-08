@@ -22,13 +22,14 @@ namespace MyBlogApp
             _postRepository = postRepository;
         }
 
-        public async Task<PostDto> GetPostWithCommentsAsync(Guid postId)
+        public Task<PostDto> GetPostWithCommentsAsync(Guid postId)
         {
-            var post = await _postRepository
+            /*var post = await _postRepository
             .Include(p => p.Comments) // Ensure to include Comments
             .FirstOrDefaultAsync(p => p.Id == postId);
 
-            return ObjectMapper.Map<Post, PostDto>(post);
+            return ObjectMapper.Map<Post, PostDto>(post);*/
+            throw new NotImplementedException();
         }
     }
 }
