@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MyBlogApp.Posts;
+using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Volo.Abp.Domain.Entities.Auditing;
 
 namespace MyBlogApp.Comments
@@ -13,5 +15,7 @@ namespace MyBlogApp.Comments
 
         public Guid PostId { get; set; }
         // Navigation property to the associated Post entity
+        [ForeignKey(nameof(PostId))]
+        public Post Post { get; set; }
     }
 }

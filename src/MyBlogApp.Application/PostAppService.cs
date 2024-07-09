@@ -1,9 +1,10 @@
 ﻿using MyBlogApp.Posts;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
-using Volo.Abp.Domain.Repositories;
+using Volo.Abp.Domain.Entities;
 
 namespace MyBlogApp
 {
@@ -12,24 +13,30 @@ namespace MyBlogApp
         PostDto, //Used to show books
         Guid, //Primary key of the book entity
         PagedAndSortedResultRequestDto, //Used for paging/sorting
-        CreateUpdatePostDto>, //Used to create/update a book
+        CreateUpdateCommentDto>, //Used to create/update a book
         IPostAppService //implement the IBookAppService
     {
-        private readonly IRepository<Post, Guid> _postRepository;
+        private readonly IPostRepository _postRepository;
 
-        public PostAppService(IRepository<Post, Guid> postRepository) : base(postRepository)
+        public PostAppService(IPostRepository postRepository) : base(postRepository)
         {
             _postRepository = postRepository;
         }
 
-        public Task<PostDto> GetPostWithCommentsAsync(Guid postId)
+        public async Task<List<PostDto>> GetAllPostsWithCommentsAsync()
         {
-            /*var post = await _postRepository
-            .Include(p => p.Comments) // Ensure to include Comments
-            .FirstOrDefaultAsync(p => p.Id == postId);
+            var posts = await _postRepository.GetAllPostsWithCommentsAsync();
+            return ObjectMapper.Map<List<Post>, List<PostDto>>(posts);
+        }
 
-            return ObjectMapper.Map<Post, PostDto>(post);*/
-            throw new NotImplementedException();
+        public async Task<PostDto> GetPostWithCommentsAsync(Guid id)
+        {
+            var post = await _postRepository.GetPostWithCommentsAsync(id);
+            if (post == null)
+            {
+                throw new EntityNotFoundException(typeof(Post), id);
+            }
+            return ObjectMapper.Map<Post, PostDto>(post);
         }
     }
 }

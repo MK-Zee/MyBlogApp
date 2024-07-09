@@ -1,4 +1,7 @@
-﻿using MyBlogApp.Data;
+﻿using Microsoft.Extensions.DependencyInjection;
+using MyBlogApp.Data;
+using MyBlogApp.EntityFrameworkCore.Repositories;
+using MyBlogApp.Posts;
 using Volo.Abp.Account;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.Data;
@@ -37,5 +40,11 @@ public class MyBlogAppApplicationModule : AbpModule
         {
             options.AddMaps<MyBlogAppApplicationModule>();
         });
+
+        // Register application services
+        context.Services.AddTransient<IPostAppService, PostAppService>();
+
+        // Register repositories
+        context.Services.AddTransient<IPostRepository, PostRepository>();
     }
 }

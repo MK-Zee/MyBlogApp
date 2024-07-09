@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MyBlogApp.Posts
 {
-    public class CreateUpdatePostDto
+    public class CreateUpdateCommentDto
     {
         [Required]
         [StringLength(256)]

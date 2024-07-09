@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="..\..\common.props" />
 
@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MyBlogApp.Domain\MyBlogApp.Domain.csproj" />
     <ProjectReference Include="..\MyBlogApp.Application.Contracts\MyBlogApp.Application.Contracts.csproj" />
+    <ProjectReference Include="..\MyBlogApp.EntityFrameworkCore\MyBlogApp.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
   <ItemGroup>

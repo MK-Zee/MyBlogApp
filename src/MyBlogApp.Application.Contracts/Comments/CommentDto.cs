@@ -8,5 +8,6 @@ namespace MyBlogApp.Comments
         public string Content { get; set; }
 
         public DateTime CommentDate { get; set; }
+        public Guid PostId { get; set; }
     }
 }

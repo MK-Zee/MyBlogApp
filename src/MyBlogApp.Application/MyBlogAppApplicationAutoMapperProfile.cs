@@ -13,7 +13,7 @@ public class MyBlogAppApplicationAutoMapperProfile : Profile
          * Alternatively, you can split your mapping configurations
          * into multiple profile classes for a better organization. */
         CreateMap<Post, PostDto>();
-        CreateMap<CreateUpdatePostDto, Post>();
+        CreateMap<CreateUpdateCommentDto, Post>();
         CreateMap<Comment, CommentDto>();
         CreateMap<Category, CategoryDto>();
     }

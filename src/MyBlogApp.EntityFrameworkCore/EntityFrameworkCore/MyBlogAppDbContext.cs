@@ -88,7 +88,9 @@ public class MyBlogAppDbContext :
             p.ConfigureByConvention(); //auto configure for the base class props
             p.Property(x => x.Title).IsRequired().HasMaxLength(256);
             p.Property(x => x.Content).IsRequired().HasMaxLength(1000);
+            p.HasMany(p => p.Comments).WithOne(c => c.Post).HasForeignKey(c => c.PostId);
         });
+
 
         builder.Entity<Category>(c =>
         {
@@ -105,7 +107,7 @@ public class MyBlogAppDbContext :
                 MyBlogAppConsts.DbSchema);
             c.ConfigureByConvention(); //auto configure for the base class props
             c.Property(x => x.Content).IsRequired();
-            c.HasOne<Post>().WithMany().HasForeignKey(x => x.PostId).IsRequired();
+            //c.HasOne<Post>().WithMany().HasForeignKey(x => x.PostId).IsRequired();
         });
         //builder.Entity<YourEntity>(b =>
         //{

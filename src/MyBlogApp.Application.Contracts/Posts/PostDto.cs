@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MyBlogApp.Comments;
+using System;
+using System.Collections.Generic;
 using Volo.Abp.Application.Dtos;
 
 namespace MyBlogApp.Posts
@@ -8,5 +10,6 @@ namespace MyBlogApp.Posts
         public string Title { get; set; }
         public string Content { get; set; }
         public DateTime PublishDate { get; set; }
+        public List<CommentDto> Comments { get; set; }
     }
 }
